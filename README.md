@@ -1,5 +1,5 @@
 # Trade Stocks with Alexa/Google Home
-Ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via a web or mobile interface can be cumbersome and time-consuming, but now you can trade stocks within seconds using your voice assistant and the power of IoT!
+Have you ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via a web or mobile interface can be cumbersome and time-consuming, but now you can trade stocks within seconds using your voice assistant and the power of IoT!
 
 ## Table of Contents
 - [Requirements](#requirements)
@@ -39,7 +39,7 @@ Ever read a news article that made you want to immediately buy or sell a stock? 
 3. You should now be on the homepage for your newly-created Lambda function. Below the function name in the `Designer` section, click `Layers`, and then `Add a layer`. Lambda functions don't natively support the `requests` library for Python, so we're going to add it here.
 ![Step 3](https://i.ibb.co/k0TbjPx/Untitled.png)
 
-4. Under `Choose a layer`, click `Specify an ARN` and then enter `arn:aws:lambda:us-east-2:770693421928:layer:Klayers-python38-requests:14`. Where it says `us-east-2`, replace it with whichever AWS region you are currently using (you can find that by clicking the menu on the top-right corner, next to your name). Finally, click `Add`.
+4. Under `Choose a layer`, click `Specify an ARN` and then enter `arn:aws:lambda:us-east-2:770693421928:layer:Klayers-python38-requests:14`. **Replace `us-east-2` with whichever AWS region you are currently using** (you can find that by clicking the menu on the top-right corner, next to your name). Finally, click `Add`.
 ![Step 4](https://i.ibb.co/m8qgbg7/Screenshot-2021-01-09-174944.png)
 
 5. Scroll down to the `Function code` section, and in the text editor, replace everything with [this code](https://raw.githubusercontent.com/sidward35/VoiceTrader/main/lambda_function.py). On line 44, replace `ID` and `SECRET` with the Alpaca API Key ID and Secret Key you copied when making your Alapaca account, keeping the quotes around them. Also comment out lines 48-50, unless you would like to create some kind of notification system every time you make a trade (won't be discussing that here). Finally, on the top-right of the `Function code` section, click `Deploy`.
@@ -87,4 +87,4 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 
 ## Usage
 
-Use the phrases you wrote in your IFTTT triggers to make a trade, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes the input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should then show up in your `Orders` page on Alpaca.
+Use the phrases you wrote in your IFTTT triggers to make trades, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes your input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should then show up in your `Orders` page on Alpaca.
