@@ -79,10 +79,10 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 3. Once connected, you should be on the page titled `Complete trigger fields`. Here, under `What do you want to say?` and `What's another way to say it? (optional)`, you can add your ideal trigger phrase, using $ where the stock symbol will be said and # where the desired quantity will be said. I am using `Buy # shares of $` and `Get # shares of $`. Finally, for `What do you want the Assistant to say in response?`, you can put something like `Okay, getting # shares of $`. Set the language to English, and then click `Create trigger`.
 ![Step 3](https://i.ibb.co/fQCPt4M/Screenshot-2021-01-09-191144.png)
 
-4. Next, click the `Add` button next to `Then That`, and search for and select `Webhooks`. Click `Make a web request`, and click `Connect`. Now set the URL to your invoke URL that you saw earlier when creating the API on AWS, and set the method to `POST`. Under Content Type, select `application/json`, and set the Body to `{"action":"buy","symbol":"{{TextField}}","quantity":"{{NumberField}}"}`. Finally, click `Create action`, and then `Continue`. Give the applet a name, or leave it as is, and then hit `Finish`.
+4. Next, click the `Add` button next to `Then That`, and search for and select `Webhooks`. Click `Make a web request`, and click `Connect`. Now set the URL to your invoke URL that you saw earlier when creating the API on AWS, and set the method to `POST`. Under Content Type, select `application/json`, and set the Body to {"action":"buy","symbol":"{{TextField}}","quantity":"{{NumberField}}"}. Finally, click `Create action`, and then `Continue`. Give the applet a name, or leave it as is, and then hit `Finish`.
 ![Step 4](https://i.ibb.co/MD22mnQ/Screenshot-2021-01-09-191655.png)
 
-5. Repeat steps 1-4 to create another applet, but this time set the trigger phrases to something like `Sell # shares of $`, and set the action Body to `{"action":"sell","symbol":"{{TextField}}","quantity":"{{NumberField}}"}`. Congrats! You're now ready to trade stocks on-the-fly with your voice assistant.
+5. Repeat steps 1-4 to create another applet, but this time set the trigger phrases to something like `Sell # shares of $`, and set the action Body to {"action":"sell","symbol":"{{TextField}}","quantity":"{{NumberField}}"}. Congrats! You're now ready to trade stocks on-the-fly with your voice assistant.
 ![Step 5](https://i.ibb.co/pnvwF1r/Screenshot-2021-01-09-192253.png)
 
 ## Usage
