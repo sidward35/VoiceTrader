@@ -34,7 +34,7 @@ Ever read a news article that made you want to immediately buy or sell a stock? 
 1. Sign up for an [AWS free tier](https://aws.amazon.com/free) account, and then go to the [AWS Lambda](https://console.aws.amazon.com/lambda/home) console page. You should see a `Create function` button.
 ![Step 1](https://i.ibb.co/BfCFF5z/Screenshot-2021-01-09-173912.png)
 
-2. Click `Create function`, and give it a name. Set the `Runtime` to Python 3.8, and then click `Create function`.
+2. Click `Create function`, and give it a name. Set the Runtime to `Python 3.8`, and then click `Create function`.
 
 3. You should now be on the homepage for your newly-created Lambda function. Below the function name in the `Designer` section, click `Layers`, and then `Add a layer`. Lambda functions don't natively support the `requests` library for Python, so we're going to add it here.
 ![Step 3](https://i.ibb.co/k0TbjPx/Untitled.png)
@@ -47,12 +47,27 @@ Ever read a news article that made you want to immediately buy or sell a stock? 
 
 6. On the top-right of the Lambda function page, next to `Throttle`, `Qualifiers`, and `Actions`, click on `Test`. Set the event template to `hello-world`, and give the event a name. Replace the JSON body with the text in the image below, and then click `Create`. Finally, click the `Test` button, and you should see a message that says `Execution result: succeeded`.
 ![Step 6-a](https://i.ibb.co/YXgKs63/Screenshot-2021-01-09-180824.png)
-Now if you go to your Alapca account and check `Paper Orders` on the sidebar, you should see that an order has been placed for 5 shares of AMZN.
+Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, you should see that an order has been placed for 5 shares of AMZN.
 ![Step 6-b](https://i.ibb.co/PhWMYXL/Screenshot-2021-01-09-181136.png)
 
 ### Exposing the Lambda Function with an API
 
-1. 
+1. Now that you have a working Lambda function that trades stocks, the next step is to make it accessible from outside the AWS console. To do this, navigate to the [AWS API Gateway](https://console.aws.amazon.com/apigateway/home) homepage. From here, create a new REST API (NOT the private one). 
+![Step 1](https://i.ibb.co/NLGXw8p/Untitled.png)
+
+2. Under `Create new API`, select `New API`, and give the API a name. Make sure the Endpoint Type is set to `Regional`, and then click `Create API`.
+
+3. Click `Actions`, and then `Create Method`. A new dropdown box should appear under `Resources`. Click on it and select `POST`, and then click the checkmark.
+![Step 3](https://i.ibb.co/MRZRFBm/Untitled.png)
+
+4. Click the green `POST` button under `Resources`, and then set the Integration type to `Lambda Function`. In the `Lambda Function` textbox, type in the name of the Lambda function you created earlier. Finally, click `Save` and `OK`.
+![Step 4](https://i.ibb.co/djDbdYz/untitled.png)
+
+5. Under the `Actions` menu, click `Deploy API`. Set the Deployment stage to `[New Stage]` and give the stage a name, such as `prod`. Then click `Deploy`.
+![Step 5](https://i.ibb.co/jWcZw1p/Untitled.png)
+
+6. You should now see a blue box with an invoke URL. Congrats! Your Lambda function is now accessible via a REST API. (Clicking the link won't do anything though, since it only has a POST method and requires some input.)
+![Step 6](https://i.ibb.co/7y8WCN9/Screenshot-2021-01-09-185117.png)
 
 ## Using IFTTT to Connect a Voice Assistant with the API
 
