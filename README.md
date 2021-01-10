@@ -71,7 +71,20 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 
 ## Using IFTTT to Connect a Voice Assistant with the API
 
-1. 
+1. [Create an IFTTT account](https://ifttt.com/join), and then [create a new applet](https://ifttt.com/create). We are going to first build an applet to buy stocks, and then one to sell them. Next to `If This`, click `Add`, and search for `Google Assistant`. After selecting Google Assistant, select the trigger `Say a phrase with both a number and a text ingredient`.
+![Step 1](https://i.ibb.co/SKHjJy5/Untitled.png)
+
+2. At this point you will have to connect your Google account to IFTTT, so click `Connect` and then give IFTTT the permissions it needs. (If you want to revoke permissions later, you can do that at any time on the [Google Account permissions](https://myaccount.google.com/permissions) page.)
+
+3. Once connected, you should be on the page titled `Complete trigger fields`. Here, under `What do you want to say?` and `What's another way to say it? (optional)`, you can add your ideal trigger phrase, using $ where the stock symbol will be said and # where the desired quantity will be said. I am using `Buy # shares of $` and `Get # shares of $`. Finally, for `What do you want the Assistant to say in response?`, you can put something like `Okay, getting # shares of $`. Set the language to English, and then click `Create trigger`.
+![Step 3](https://i.ibb.co/fQCPt4M/Screenshot-2021-01-09-191144.png)
+
+4. Next, click the `Add` button next to `Then That`, and search for and select `Webhooks`. Click `Make a web request`, and click `Connect`. Now set the URL to your invoke URL that you saw earlier when creating the API on AWS, and set the method to `POST`. Under Content Type, select `application/json`, and set the Body to `{"action":"buy","symbol":" {{TextField}}","quantity":" {{NumberField}}"}`. Finally, click `Creat action`, and then `Continue`. Give the applet a name, or leave it as is, and then hit `Finish`.
+![Step 4](https://i.ibb.co/MD22mnQ/Screenshot-2021-01-09-191655.png)
+
+5. Repeat steps 1-4 to create another applet, but this time set the trigger phrases to something like `Sell # shares of $`, and set the action Body to `{"action":"sell","symbol":" {{TextField}}","quantity":" {{NumberField}}"}`. Congrats! You're now ready to trade stocks on-the-fly with your voice assistant.
+![Step 5](https://i.ibb.co/pnvwF1r/Screenshot-2021-01-09-192253.png)
 
 ## Usage
 
+Use the phrases you wrote in your IFTTT triggers to make a trade, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes the input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should show then up in your `Orders` page on Alpaca.
