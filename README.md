@@ -1,5 +1,5 @@
 # Trade Stocks with Alexa/Google Home
-Have you ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via a web or mobile interface can be cumbersome and time-consuming, but now you can trade stocks within seconds using your voice assistant and the power of IoT!
+Ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via a web or mobile interface can be cumbersome and time-consuming, but now you can trade stocks within seconds using your voice assistant and the power of IoT!
 
 ## Table of Contents
 - [Requirements](#requirements)
