@@ -1,5 +1,5 @@
 # Trade Stocks with Alexa/Google Home
-Ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via web or mobile interface can be cumbersome and time-consuming, but now you can simply trade stocks within seconds using your voice assistant and the power of IoT!
+Ever read a news article that made you want to immediately buy or sell a stock? Getting to your portfolio via a web or mobile interface can be cumbersome and time-consuming, but now you can trade stocks within seconds using your voice assistant and the power of IoT!
 
 ## Table of Contents
 - [Requirements](#requirements)
@@ -87,4 +87,4 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 
 ## Usage
 
-Use the phrases you wrote in your IFTTT triggers to make a trade, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes the input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should show then up in your `Orders` page on Alpaca.
+Use the phrases you wrote in your IFTTT triggers to make a trade, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes the input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should then show up in your `Orders` page on Alpaca.
