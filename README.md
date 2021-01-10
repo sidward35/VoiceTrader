@@ -24,7 +24,7 @@ Ever read a news article that made you want to immediately buy or sell a stock? 
 2. If you'd like to trade with real money, click `Individual Account` and fill in all the required information. To do paper trading, no additional information is necessary. Simply click `Go to Paper Account` on the top-left. I'm using a Paper Trading account, but most of the steps should be similar across both.
 ![Step 2](https://i.ibb.co/R7mq9FW/Screenshot-2021-01-09-171908.png)
 
-3. You should now be on the Overview Dashboard page, and on the right side you'll see a section titled `Your API Keys`. Click `View` to expand the section and then `Generate New Key`. **Copy your API Key ID and Secret Key, as you won't be able to see it again** unless you generate a new one. These will be used in the next section when [creating the Lambda function](#creating-the-lambda-function).
+3. Head to the Overview Dashboard page, and on the right side you'll see a section titled `Your API Keys`. Click `View` to expand the section and then `Generate New Key`. **Copy your API Key ID and Secret Key, as you won't be able to see it again** unless you generate a new one. These will be used in the next section when [creating the Lambda function](#creating-the-lambda-function).
 ![Step 3](https://i.ibb.co/s9Xwd2w/Untitled.png)
 
 ## Building an API to Run a Lambda Function with AWS
@@ -42,10 +42,10 @@ Ever read a news article that made you want to immediately buy or sell a stock? 
 4. Under `Choose a layer`, click `Specify an ARN` and then enter `arn:aws:lambda:us-east-2:770693421928:layer:Klayers-python38-requests:14`. **Replace `us-east-2` with whichever AWS region you are currently using** (you can find that by clicking the menu on the top-right corner, next to your name). Finally, click `Add`.
 ![Step 4](https://i.ibb.co/m8qgbg7/Screenshot-2021-01-09-174944.png)
 
-5. Scroll down to the `Function code` section, and in the text editor, replace everything with [this code](https://raw.githubusercontent.com/sidward35/VoiceTrader/main/lambda_function.py). On line 44, replace `ID` and `SECRET` with the Alpaca API Key ID and Secret Key you copied when making your Alapaca account, keeping the quotes around them. Also comment out lines 48-50, unless you would like to create some kind of notification system every time you make a trade (won't be discussing that here). Finally, on the top-right of the `Function code` section, click `Deploy`.
+5. Scroll down to the `Function code` section, and in the text editor, replace everything with [this code](https://raw.githubusercontent.com/sidward35/VoiceTrader/main/lambda_function.py). On line 44, replace `ID` and `SECRET` with the Alpaca API Key ID and Secret Key you copied when making your Alpaca account, keeping the quotes around them. Also comment out lines 48-50, unless you would like to create some kind of notification system every time you make a trade (won't be discussing that here). Finally, on the top-right of the `Function code` section, click `Deploy`.
 ![Step 5](https://i.ibb.co/9HBhJ81/Untitled.png)
 
-6. On the top-right of the Lambda function page, next to `Throttle`, `Qualifiers`, and `Actions`, click on `Test`. Set the event template to `hello-world`, and give the event a name. Replace the JSON body with the text in the image below, and then click `Create`. Finally, click the `Test` button, and you should see a message that says `Execution result: succeeded`.
+6. On the top-right of the Lambda function page, next to `Throttle`, `Qualifiers`, and `Actions`, click on `Test`. Set the event template to `hello-world`, and give the event a name. Replace the JSON body with the text in the image below, and then click `Create`. Finally, click the `Test` button again, and you should see a message that says `Execution result: succeeded`.
 ![Step 6-a](https://i.ibb.co/YXgKs63/Screenshot-2021-01-09-180824.png)
 Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, you should see that an order has been placed for 5 shares of AMZN.
 ![Step 6-b](https://i.ibb.co/PhWMYXL/Screenshot-2021-01-09-181136.png)
@@ -60,7 +60,7 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 3. Click `Actions`, and then `Create Method`. A new dropdown box should appear under `Resources`. Click on it and select `POST`, and then click the checkmark.
 ![Step 3](https://i.ibb.co/MRZRFBm/Untitled.png)
 
-4. Click the green `POST` button under `Resources`, and then set the Integration type to `Lambda Function`. In the `Lambda Function` textbox, type in the name of the Lambda function you created earlier. Finally, click `Save` and `OK`.
+4. Click the green `POST` button under `Resources`, and then set the Integration type to `Lambda Function`. In the `Lambda Function` textbox, enter the name of the Lambda function you created earlier. Finally, click `Save` and `OK`.
 ![Step 4](https://i.ibb.co/djDbdYz/untitled.png)
 
 5. Under the `Actions` menu, click `Deploy API`. Set the Deployment stage to `[New Stage]` and give the stage a name, such as `prod`. Then click `Deploy`.
@@ -71,7 +71,7 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 
 ## Using IFTTT to Connect a Voice Assistant with the API
 
-1. [Create an IFTTT account](https://ifttt.com/join), and then [create a new applet](https://ifttt.com/create). We are going to first build an applet to buy stocks, and then one to sell them. Next to `If This`, click `Add`, and search for `Google Assistant`. After selecting Google Assistant, select the trigger `Say a phrase with both a number and a text ingredient`.
+1. [Create an IFTTT account](https://ifttt.com/join), and then [create a new applet](https://ifttt.com/create). First we are going to build an applet to buy stocks, and then one to sell them. Next to `If This`, click `Add`, and search for `Google Assistant`. After selecting Google Assistant, select the trigger `Say a phrase with both a number and a text ingredient`.
 ![Step 1](https://i.ibb.co/SKHjJy5/Untitled.png)
 
 2. At this point you will have to connect your Google account to IFTTT, so click `Connect` and then give IFTTT the permissions it needs. (If you want to revoke permissions later, you can do that at any time on the [Google Account permissions](https://myaccount.google.com/permissions) page.)
@@ -79,10 +79,10 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 3. Once connected, you should be on the page titled `Complete trigger fields`. Here, under `What do you want to say?` and `What's another way to say it? (optional)`, you can add your ideal trigger phrase, using $ where the stock symbol will be said and # where the desired quantity will be said. I am using `Buy # shares of $` and `Get # shares of $`. Finally, for `What do you want the Assistant to say in response?`, you can put something like `Okay, getting # shares of $`. Set the language to English, and then click `Create trigger`.
 ![Step 3](https://i.ibb.co/fQCPt4M/Screenshot-2021-01-09-191144.png)
 
-4. Next, click the `Add` button next to `Then That`, and search for and select `Webhooks`. Click `Make a web request`, and click `Connect`. Now set the URL to your invoke URL that you saw earlier when creating the API on AWS, and set the method to `POST`. Under Content Type, select `application/json`, and set the Body to `{"action":"buy","symbol":" {{TextField}}","quantity":" {{NumberField}}"}`. Finally, click `Creat action`, and then `Continue`. Give the applet a name, or leave it as is, and then hit `Finish`.
+4. Next, click the `Add` button next to `Then That`, and search for and select `Webhooks`. Click `Make a web request`, and click `Connect`. Now set the URL to your invoke URL that you saw earlier when creating the API on AWS, and set the method to `POST`. Under Content Type, select `application/json`, and set the Body to `{"action":"buy","symbol":"\{\{TextField\}\}","quantity":"\{\{NumberField\}\}"}`. Finally, click `Create action`, and then `Continue`. Give the applet a name, or leave it as is, and then hit `Finish`.
 ![Step 4](https://i.ibb.co/MD22mnQ/Screenshot-2021-01-09-191655.png)
 
-5. Repeat steps 1-4 to create another applet, but this time set the trigger phrases to something like `Sell # shares of $`, and set the action Body to `{"action":"sell","symbol":" {{TextField}}","quantity":" {{NumberField}}"}`. Congrats! You're now ready to trade stocks on-the-fly with your voice assistant.
+5. Repeat steps 1-4 to create another applet, but this time set the trigger phrases to something like `Sell # shares of $`, and set the action Body to `{"action":"sell","symbol":"\{\{TextField\}\}","quantity":"\{\{NumberField\}\}"}`. Congrats! You're now ready to trade stocks on-the-fly with your voice assistant.
 ![Step 5](https://i.ibb.co/pnvwF1r/Screenshot-2021-01-09-192253.png)
 
 ## Usage
