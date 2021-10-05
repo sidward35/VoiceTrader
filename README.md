@@ -88,3 +88,13 @@ Now if you go to your Alpaca account and check `Paper Orders` on the sidebar, yo
 ## Usage
 
 Use the phrases you wrote in your IFTTT triggers to make trades, and make sure to spell out the letters of the stock symbol to ensure that the voice assistant processes your input correctly (e.g. `Hey Google, get 5 shares of A-M-Z-N`). The trade should then show up in your `Orders` page on Alpaca.
+
+<script src="https://cdn.signalfx.com/o11y-gdi-rum/latest/splunk-otel-web.js" crossorigin="anonymous">
+</script>
+<script>
+    SplunkRum.init({
+        beaconUrl: 'https://rum-ingest.us1.signalfx.com/v1/rum',
+        rumAuth: 'JUeo4BsZeSWJ8QA7RKV2yA',
+        app: 'personal-website'
+    });
+</script>
